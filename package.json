@@ -1,0 +1,26 @@
+{
+  "name": "airportwifi",
+  "version": "1.0.0",
+  "description": "Airport wifi reviews, so you can check before committing to arriving early",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/una/airportwifi.git"
+  },
+  "author": "Una Kravets",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/una/airportwifi/issues"
+  },
+  "homepage": "https://github.com/una/airportwifi",
+  "dependencies": {
+    "express": "^4.13.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "supertest": "^1.0.1"
+  }
+}
