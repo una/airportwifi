@@ -40,3 +40,19 @@ describe('Listing Airports', function () {
       .expect(JSON.stringify(['Austin', 'Nashville']), done);
   });
 });
+
+describe('Adding new airports', function () {
+  it('Resturns a 201 status code', function (done) {
+      request(app)
+        .post('/airports')
+        .send('name=Name&description=this+is+the+description')
+        .expect(201, done);
+  });
+
+  it('Returns the airport name', function (done) {
+      request(app)
+        .post('/airports')
+        .send('name=Name&description=this+is+the+description')
+        .expect(/Name/i, done);
+  });
+});

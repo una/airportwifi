@@ -8,4 +8,8 @@ app.get('/airports', function(req,res) {
   res.json(airports);
 });
 
+app.post('/airports', function(req, res){
+  res.sendStatus(201);
+});
+
 module.exports = app;
