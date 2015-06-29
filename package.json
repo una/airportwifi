@@ -4,7 +4,7 @@
   "description": "Airport wifi reviews, so you can check before committing to arriving early",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js -w"
   },
   "repository": {
     "type": "git",

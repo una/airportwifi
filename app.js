@@ -1,8 +1,11 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function(req, res) {
-  res.send('OK');
+app.use(express.static('public'));
+
+app.get('/airports', function(req,res) {
+  var airports = ['Austin', 'Nashville'];
+  res.json(airports);
 });
 
 module.exports = app;
