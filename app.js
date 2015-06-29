@@ -19,9 +19,6 @@ if (process.env.REDISTOGO_URL) {
   client.select((process.env.NODE_ENV || 'development').length);
 }
 
-// flushes db tests
-client.select((process.env.NODE_ENV || 'development').length);
-
 app.get('/airports', function(req,res) {
   client.hkeys('airports', function(err, names) {
     if(err) throw err;
