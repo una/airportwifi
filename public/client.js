@@ -33,7 +33,7 @@ $(function(){
       list.push($('<li>', { html: content }));
     }
 
-    $('.airport-list').append(list)
+    $('.airport-list').append(list);
   }
 
 

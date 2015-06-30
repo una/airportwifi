@@ -61,4 +61,51 @@ describe('Adding new airports', function () {
         .send('name=Name&description=this+is+the+description')
         .expect(/name/i, done);
   });
+
+  it('Validates the airport name & details', function (done) {
+    request(app)
+      .post('/airports')
+      .send('name=&description=')
+      .expect(400, done);
+  });
+});
+
+describe('Deleting airports from list', function () {
+
+  before(function(){
+    client.hset('airports', 'Marge', 'wat');
+  });
+
+  after(function(){
+    client.flushdb();
+  });
+
+  it('Returns a 204 status code', function (done) {
+      request(app)
+        .delete('/airports/Marge')
+        .expect(204, done);
+  });
+});
+
+describe('Shows airport info', function() {
+
+  before(function() {
+    client.hset('airports', 'Something', 'hello beautiful!');
+  });
+
+  after(function() {
+    client.flushdb();
+  });
+
+  it('Returns 200 status code', function(done){
+    request(app)
+      .get('/airports/Something')
+      .expect(200, done);
+  });
+
+  it('Returns HTML format', function(done) {
+    request(app)
+      .get('/airports/Something')
+      .expect('Content-Type', /html/, done);
+  });
 });

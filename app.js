@@ -28,10 +28,35 @@ app.get('/airports', function(req,res) {
 
 app.post('/airports', urlEncode, function(req, res){
     var newAirport = req.body;
-    client.hset('airports', newAirport.name, newAirport.description, function(err) {
-        if(err) throw err;
-        res.status(201).json(newAirport.name);
+
+    if(!newAirport.name || !newAirport.description) {
+      res.sendStatus(400);
+      return false;
+    }
+
+    client.hset('airports', newAirport.name, newAirport.description, function(error) {
+      if(error) throw error;
+
+      res.status(201).json(newAirport.name);
     });
+});
+
+app.delete('/airports/:name', function(req, res) {
+  client.hdel('airports', req.params.name, function(err) {
+    if(err) throw err;
+    res.sendStatus(204);
+  });
+});
+
+app.get('/airports/:name', function(req, res) {
+  client.hget('airports', req.params.name, function(err, description) {
+    if(err) throw err;
+    res.render('show.ejs', {
+        airport: {
+          name: req.params.name,
+          desc: req.params.description}
+      });
+  });
 });
 
 module.exports = app;
